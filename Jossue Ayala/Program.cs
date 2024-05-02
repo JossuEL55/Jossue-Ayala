@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Jossue_Ayala.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<Jossue_AyalaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Jossue_AyalaContext") ?? throw new InvalidOperationException("Connection string 'Jossue_AyalaContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
